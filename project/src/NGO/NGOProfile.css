@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+
+.ngo-profile-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 50px auto;
+  background: #f4f4f4;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.ngo-profile-container:hover {
+  transform: scale(1.02);
+}
+
+/* Banner */
+.ngo-banner {
+  background: linear-gradient(135deg, #fc8f8f96, #efbfbf96, #008080);
+  color: black;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+/* Details */
+.ngo-details {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
+}
+
+.detail {
+  font-size: 20px;
+  font-weight: 600;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.ngo-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.edit-btn {
+  background: #008080 !important;
+  color: white !important;
+  padding: 10px 20px;
+}
+
+.delete-btn {
+  background: #d32f2f !important;
+  color: white !important;
+  padding: 10px 20px;
+}
+
+/* No Data Message */
+.no-ngo-text {
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 20px;
+}

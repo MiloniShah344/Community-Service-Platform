@@ -1,0 +1,132 @@
+/* Modal Overlay */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(6px); /* Soft Glass Effect */
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Box */
+.dialog-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 25px;
+  width: 420px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Heading */
+.dialog-box h2 {
+  color: #333;
+  font-size: 22px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Form Labels */
+.dialog-box label {
+  display: block;
+  font-weight: bold;
+  color: #444;
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Input Fields */
+.dialog-box input,
+.dialog-box select,
+.dialog-box textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  background: rgba(240, 240, 240, 0.8);
+  box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease-in-out;
+}
+
+/* Input Focus */
+.dialog-box input:focus,
+.dialog-box select:focus,
+.dialog-box textarea:focus {
+  background: white;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons Container */
+.dialog-buttons {
+  display: flex;
+  justify-content: center;  /* Center buttons */
+  gap: 15px;  /* Add space between buttons */
+  margin-top: 20px;
+}
+
+
+/* Save Button */
+.save-btn {
+  background: linear-gradient(to right, #4caf50, #2e7d32);
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+}
+
+.save-btn:hover {
+  background: linear-gradient(to right, #2e7d32, #1b5e20);
+  transform: scale(1.05);
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background: linear-gradient(to right, #e63946, #b71c1c);
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease-in-out;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(to right, #b71c1c, #7f0000);
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  .dialog-box {
+    width: 90%;
+    padding: 20px;
+  }
+}

@@ -1,0 +1,55 @@
+/* .post-project-container{
+    width: 90%;
+  max-width: 900px;
+  margin: 50px auto;
+  background: #f4f4f4;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+} */
+
+.post-project-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #fc8f8f96, #efbfbf96, #008080);
+}
+
+
+.post-project-card {
+  width: 500px;
+  padding: 30px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  color: #008080;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  margin-bottom: 20px !important;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  background-color: #008080 !important;
+  color: white !important;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #005f5f !important;
+}

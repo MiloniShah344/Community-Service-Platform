@@ -1,0 +1,130 @@
+/* Container */
+.projects-container {
+  width: 90%;
+  max-width: 1300px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #e3f3eb; /* Light pastel shade of the original color */
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+/* Heading */
+.projects-heading {
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: #b23b3b; /* Darker shade of the original theme */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+/* Table Container */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table Styling */
+.projects-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white; /* Clean White Table Background */
+}
+
+.projects-table thead {
+  background: #f0bfbf; /* Darker Red Tone */
+  color: white;
+}
+
+.projects-table th, .projects-table td {
+  padding: 15px;
+  text-align: center;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.projects-table th {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Alternating Row Colors */
+.projects-table tbody tr:nth-child(even) {
+  /* background: #fbdada; Soft Tint of the Original Theme */
+  background: #f0cfcf
+}
+
+.projects-table tbody tr:nth-child(odd) {
+  background: #ffffff; /* White Background */
+}
+
+/* Hover Effect */
+.projects-table tbody tr:hover {
+  background: #f5bcbc; /* Light Pinkish Hover Effect */
+  transform: scale(1.02);
+  transition: 0.3s ease-in-out;
+}
+
+/* Status Labels */
+.ongoing-status {
+  background: #f4a261; /* Warm Orange for 'Ongoing' */
+  color: white;
+  /* padding: 5px 10px; */
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.completed-status {
+  background: #2a9d8f; /* Softer Teal for 'Completed' */
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+/* Action Buttons */
+.project-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-btn {
+  background: #388e3c;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #2c6e2e;
+}
+
+.delete-btn {
+  background: #e63946;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #c62828;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .projects-table th, .projects-table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

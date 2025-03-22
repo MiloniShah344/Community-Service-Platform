@@ -1,0 +1,21 @@
+.graph-container {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.graph-heading {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #008080;
+  margin-bottom: 20px;
+}
+
+.recharts-tooltip-wrapper {
+  font-size: 16px;
+}

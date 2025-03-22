@@ -1,0 +1,126 @@
+/* Main Container */
+.volunteer-container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 10px auto 50px;
+  text-align: center;
+}
+
+/* Heading */
+.volunteer-heading {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  /* margin-bottom: 30px; */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Table-Like Header */
+.volunteer-header {
+  display: flex;
+  background: #b71c1c; /* Deep Red */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.header-cell {
+  flex: 1;
+  text-align: center;
+}
+
+/* Volunteer List */
+.volunteer-list {
+  margin-top: 10px;
+}
+
+/* Accordion */
+.volunteer-accordion {
+  border-bottom: 2px solid #ddd;
+}
+
+/* Accordion Summary */
+.volunteer-summary {
+  background: white;
+  padding: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.volunteer-summary:hover {
+  background: #ffebee; /* Light Red */
+}
+
+/* Table-Like Rows */
+.volunteer-row {
+  display: flex;
+  width: 100%;
+}
+
+.volunteer-cell {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Expand Icon */
+.expand-icon {
+  color: #b71c1c;
+}
+
+/* Expanded Details */
+.volunteer-details {
+  padding: 20px;
+  background: #ffebee; /* Soft Pink */
+  border-top: 2px solid #b71c1c;
+  text-align: left;
+}
+
+/* Details Grid */
+.details-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  font-size: 18px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .volunteer-header {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .header-cell {
+        text-align: center;
+    font-size: 25px;
+    font-family: serif;
+    font-weight: 800;
+  }
+
+  .volunteer-row {
+    flex-direction: column;
+  }
+
+  .volunteer-cell {
+    /* font-size: 16px; */
+    /* text-align: left; */
+    text-align: center;
+    padding: 12px;
+    font-size: 25px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .details-container {
+    font-size: 16px;
+  }
+}

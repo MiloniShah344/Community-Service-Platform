@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+
+.volunteers-container {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #e3f3eb;
+}
+
+.volunteers-heading {
+  font-size: 28px;
+  font-weight: bold;
+  color: #008080;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.volunteers-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.volunteer-card {
+    background: linear-gradient(135deg, #fde5c9, #ffd6a5, #f1cc9f);
+  color: black;
+  padding: 10px 40px;   
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  transition: transform 0.3s ease;
+}
+
+.volunteer-card:hover {
+  transform: scale(1.05);
+}
+
+.volunteer-name {
+  font-size: 50px; /* Increased font size */
+  font-weight: 500;
+  /* text-transform: uppercase; */
+  font-family: "Italianno", serif; /* Stylish font */
+  color: #005a5a; /* Deep contrast for visibility */
+}
+
+.volunteer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.volunteer-info p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin: 5px 0;
+  padding: 10px;
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 18px;
+}

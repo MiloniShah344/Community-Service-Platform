@@ -1,0 +1,149 @@
+*{
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.background {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-image: conic-gradient(from 45deg, #FF8A8A 45deg 180deg, #F8EDE3 180deg 360deg);
+    overflow-x: hidden;
+}
+
+.login-container {
+    display: flex;
+    height: 80vh;
+    width: 80vw;
+    margin: auto;
+    margin-top: 10vh;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.VolContainer{
+    font-size: 15px;
+}
+
+.form-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9); /* Slightly translucent white background */
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-group input{
+    background-color: transparent;
+}
+
+.Ngobutton{
+    width: 250px;
+    height: 50px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+#username, #age, #email, #password{
+    background-color: transparent;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    transition: border-color 0.3s;
+    background-color: transparent;
+}
+
+.VolFormSection > .input-container{
+    width: 300px;
+}
+
+.input-container:hover {
+    border-color: #007bff;
+}
+
+.input-container i {
+    margin-right: 10px;
+    color: #007bff;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    outline: none;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+}
+
+.image-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0 8px 8px 0;
+}
+#img-register{
+    width: 120%;
+    height: 80%;
+}
+
+#img-login{
+    width: 80%;
+    height: 80%;
+}
+
+.login-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%; /* Start from the middle */
+    background-color: #F4DEB3; /* Triangle color */
+    clip-path: polygon(0 0, 100% 0, 100% 100%); /* Create a right triangle */
+    z-index: -1; /* Send it behind the container */
+}
