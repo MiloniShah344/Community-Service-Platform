@@ -181,6 +181,7 @@ useEffect(() => {
   return (
     <>
     <div className="projects-container">
+      <div class="CurrentProjectsSwiper">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation
@@ -220,7 +221,9 @@ useEffect(() => {
             </div>
           </SwiperSlide>
         ))} */}
+        
       </Swiper>
+      </div>
     </div>
     </>
   );

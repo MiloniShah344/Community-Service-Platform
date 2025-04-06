@@ -13,6 +13,7 @@ const createUser = (req, res) => {
     const { error } = validateUser(req.body);
     console.log('In create User')
     if (error) {
+      console.log(error)
       res.send({
         msg: "Error",
         error: error,
@@ -52,13 +53,8 @@ const loginUser = (req, res) => {
   try {
     User.findOne({ UserName: req.body.UserName })
       .then((data) => {
-        // console.log('Data', data, req.body.Password, data.Password);
-        // console.log("==", req.body.Password == data.Password)
-        // console.log("Roles: ", req.body.Role, data.Role)
         const isValidPass = bcrypt.compareSync(req.body.Password, data.Password)
         const isValidRole = (req.body.Role == data.Role)
-        // console.log('isValidPass', isValidPass)
-        // console.log('isValidRole', isValidRole)
         if (isValidPass && isValidRole) {
           var token = jwt.sign({ UserName: data.UserName, Password: data.Password, Role: data.Role }, process.env.PRIVATEKEY);
           // console.log('data', data)

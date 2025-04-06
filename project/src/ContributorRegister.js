@@ -14,7 +14,7 @@ import FormLabel from '@mui/material/FormLabel';
 const ContributorRegister = () => {
   let navigate = useNavigate()
 
-  const [data, setData] = React.useState({UniqueId: localStorage.getItem("UniqueId")})
+  const [data, setData] = React.useState({UniqueId: localStorage.getItem("UniqueId"), projectsVolunteered: [], donation: {}})
   const [update, doupdate] = React.useState(true)
   const [alert, setAlert] = React.useState({
         value: false,
@@ -46,15 +46,15 @@ const ContributorRegister = () => {
   }
 
   const handleSubmit = ()=>{
-    window.alert("Waiting for verification!")
+    // window.alert("Waiting for verification!")
     console.log("In handle Submit. Data: ", data)
-    navigate('/Login')
+    
     // if(res.data.data)
     axios.post(`http://localhost:4000/ContributorRegister`, data)
             .then((res) => {
                 doupdate(!update)
                 console.log("res.data", res.data)
-
+                navigate('/Login')
                 setAlert({
                     value: true,
                     msg: res.data.isSuccess? "Contributo Added!":"Please enter all mandatory fields",
@@ -62,6 +62,7 @@ const ContributorRegister = () => {
                 })
             }).catch((err) => {
                 console.log("Error", err)
+                window.alert("Some Error Occurred!!")
                 setAlert({
                     value: false,
                     msg: "Error occured while adding data!",
@@ -90,7 +91,7 @@ const ContributorRegister = () => {
           <div className="form-group">
             <div className="input-container">
               <i className="fas fa-user"></i>
-              <input type="number" id="number" onChange={(e)=>{handleChange(e,"Age")}} required placeholder="Age" />
+              <input type="number" id="number" onChange={(e)=>{handleChange(e,"age")}} required placeholder="Age" />
             </div>
           </div>
           <div className="form-group">

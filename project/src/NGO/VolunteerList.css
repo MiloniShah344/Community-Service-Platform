@@ -74,7 +74,7 @@
 }
 
 /* Expanded Details */
-.volunteer-details {
+.VolunteerList .volunteer-details {
   padding: 20px;
   background: #ffebee; /* Soft Pink */
   border-top: 2px solid #b71c1c;

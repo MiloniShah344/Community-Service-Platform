@@ -1,5 +1,4 @@
 require("dotenv").config();
-const { LEGAL_TCP_SOCKET_OPTIONS } = require("mongodb");
 const { NGO, validateNGO } = require("../Model/NGOSchema");
 
 const createNGO = (req, res)=>{
@@ -73,15 +72,14 @@ const getNGO = (req, res) => {
 
 const getSpecificNGO = (req, res) => {
   try {
-    console.log('in getNGO');
-    NGO.findOne({ UniqueId: req.body.UniqueId })
+    console.log('in getSpecificNGO');
+    NGO.findOne({ UniqueId: req.query.UniqueId })
       .then((val) => {
         console.log(val);
         res.send({
           isSuccess: true,
           data: val
         })
-
       })
       .catch((err) => {
         res.send({
@@ -97,4 +95,27 @@ const getSpecificNGO = (req, res) => {
   }
 }
 
-module.exports = {createNGO, getNGO, getSpecificNGO}
+const updateNGO = (req,res)=>{
+    try{
+        NGO.updateOne({_id:req.query._id},req.body)
+        .then((data)=>{
+            console.log(data)
+            res.send({
+                isSuccess: true,
+                data: data
+            })
+        }).catch((err)=>{
+            res.send({
+                isSuccess: false,
+                message: err
+            })
+        })
+    }catch(err){
+        res.send({
+            isSuccess: false,
+            message: err
+        })
+    }
+}
+
+module.exports = {createNGO, getNGO, getSpecificNGO, updateNGO}

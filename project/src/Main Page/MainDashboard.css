@@ -220,3 +220,7 @@ th{
   padding-left: 60px;
   padding-top: 30px;
 }
+
+.currentProjects p {
+  margin: 30px 0px
+}

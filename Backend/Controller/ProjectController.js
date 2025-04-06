@@ -122,6 +122,32 @@ const getOneProject = (req, res) => {
   }
 }
 
+const getProjectByName = (req, res) => {
+  try {
+    console.log('in getProjectByName')
+    Project.findOne({ ProjectName: req.body.ProjectName })
+      .then((val) => {
+        console.log(val);
+        res.send({
+          isSuccess: true,
+          data: val
+        })
+
+      })
+      .catch((err) => {
+        res.send({
+          isSuccess: false,
+          message: err,
+        });
+      });
+  } catch (err) {
+    res.send({
+      isSuccess: false,
+      message: err,
+    });
+  }
+}
+
 const updateProject = (req,res)=>{
     try{
         Project.updateOne({_id:req.query._id},req.body)
@@ -168,4 +194,4 @@ const deleteProject = (req, res) => {
     }
 }
 
-module.exports = {createProject, getAllProjects, getSpecificProject, getOneProject, updateProject, deleteProject}
+module.exports = {createProject, getAllProjects, getSpecificProject, getOneProject, updateProject, deleteProject, getProjectByName}

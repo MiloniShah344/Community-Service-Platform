@@ -70,4 +70,29 @@ const getContributor = (req, res) => {
   }
 }
 
-module.exports = {createContributor, getContributor}
+const getSpecificCont = (req, res) => {
+  try {
+    console.log('in getSpecificCont');
+    Cont.findOne({ UniqueId: req.query.UniqueId })
+      .then((val) => {
+        console.log(val);
+        res.send({
+          isSuccess: true,
+          data: val
+        })
+      })
+      .catch((err) => {
+        res.send({
+          isSuccess: false,
+          message: err,
+        });
+      });
+  } catch (err) {
+    res.send({
+      isSuccess: false,
+      message: err,
+    });
+  }
+}
+
+module.exports = {createContributor, getContributor, getSpecificCont}

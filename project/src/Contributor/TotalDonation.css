@@ -1,0 +1,110 @@
+.donation-container {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0e6f6, #e0f7fa);
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: 0.3s ease-in-out;
+}
+
+.donation-container:hover {
+  transform: scale(1.02);
+}
+
+.donation-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #37474f; /* Softer dark gray */
+}
+
+.donation-card {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 18px;
+  border-radius: 10px;
+  margin: 12px 0;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.08);
+  transition: 0.3s;
+}
+
+.donation-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.donation-amount {
+  font-size: 28px;
+  font-weight: bold;
+  color: #00796b; /* Muted teal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rupee-icon {
+  margin-right: 6px;
+  color: #00695c; /* Darker teal */
+}
+
+.donation-subtext {
+  font-size: 14px;
+  color: #616161; /* Soft gray */
+  margin-top: 6px;
+}
+
+.top-donations {
+  margin-top: 15px;
+}
+
+.top-donations h4 {
+  color: #455a64; /* Muted blue-gray */
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.donation-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align */
+}
+
+.donation-item {
+  width: 85%;
+  padding: 10px;
+  border-radius: 8px;
+  /* background: #e6f2f2; Soft pastel blue */
+  background: transparent;
+  margin: 5px 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  transition: 0.3s;
+}
+
+.donation-item:hover {
+  background: #d9ebeb; /* Lighter shade */
+  transform: scale(1.03);
+}
+
+.project-name {
+  color: #37474f;
+    flex-grow: 1;
+    /* text-align: left; */
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    padding-right: 3%;
+    font-size: 18px;
+}
+
+.donation-amount {
+  font-weight: 600;
+  color: #004d40;
+  text-align: right;
+}

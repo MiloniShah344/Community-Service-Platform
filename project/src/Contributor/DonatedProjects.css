@@ -1,0 +1,72 @@
+.projects-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.CurrentProjectsSwiper {
+  width: 90%;
+}
+
+.projects-swiper {
+  padding: 20px 0;
+}
+
+.project-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.project-card {
+  background: linear-gradient(135deg, #ffe6e6, #e6f7ff);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-title {
+  color: #008080;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.project-info {
+  margin-top: 10px;
+}
+
+.project-info p {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.donation-amount {
+  font-size: 18px;
+  font-weight: 700;
+  color: #d35400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-projects {
+  text-align: center;
+  color: #888;
+  font-size: 18px;
+}

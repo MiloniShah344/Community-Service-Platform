@@ -47,7 +47,7 @@ const LoginForm = () => {
         doupdate(!update)
         console.log("res.data in handlelogin", res.data)
         console.log("res.data.data.UniqueId", res.data.data.UniqueId)
-          console.log("res.data.token",res.data.token)
+        console.log("res.data.token",res.data.token)
         localStorage.setItem("token", res.data.token)
         localStorage.setItem("UniqueIdAtLogin", res.data.data.UniqueId)
         setAlert({
@@ -80,8 +80,6 @@ const LoginForm = () => {
           type: "error"
         })
       })
-
-
   }
   const handleSubmit = (e) => {
     e.preventDefault();

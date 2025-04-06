@@ -20,6 +20,9 @@ let ProjectSchema =  mongoose.Schema({
     },
     Description: {
         type: String
+    },
+    ProjectId: {
+        type: Number
     }
 })
 
@@ -36,7 +39,8 @@ const validateProject = (Project)=> {
         City: joi.string()
         .required(),
         Description: joi.string()
-        .required()
+        .required(),
+        // ProjectId: joi.required()
     })
     return joiSchema.validate(Project)
 }

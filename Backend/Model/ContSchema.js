@@ -20,6 +20,20 @@ let ContSchema =  mongoose.Schema({
     },
     gender: {
         type: String
+    },
+    projectsVolunteered: {
+        type: Array,
+        required: false,
+        default: []
+    },
+    donation:{
+        type: Object,
+        require: false,
+        default: {}
+    },
+    UniqueId: {
+        type: Number,
+        require: true
     }
 })
 
@@ -35,7 +49,10 @@ const validateCont = (Cont)=> {
         phone: joi.number()
         .min(7000000000)
         .max(9999999999),
-        gender: joi.string()
+        gender: joi.string(),
+        projectsVolunteered: joi.array(),
+        donation: joi.object(),
+        UniqueId: joi.required()
     })
     return joiSchema.validate(Cont)
 }
