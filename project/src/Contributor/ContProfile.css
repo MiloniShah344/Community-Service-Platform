@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+
+.contributor-profile-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 50px auto;
+  background: #f4f4f4;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.contributor-profile-container:hover {
+  transform: scale(1.02);
+}
+
+.contributor-banner {
+  background: linear-gradient(135deg, #d4e2d4, #e0d4e2, #008080);
+  color: black;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.contributor-details {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 30px 0;
+}
+
+.detail {
+  font-size: 20px;
+  font-weight: 600;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contributor-extra {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.extra-block {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1 1 300px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.extra-block ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.extra-block li {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.contributor-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.edit-btn {
+  background: #008080 !important;
+  color: white !important;
+  padding: 10px 20px;
+}
+
+.no-contributor-text {
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 20px;
+}

@@ -71,8 +71,8 @@
 }
 
 /* Status Labels */
-.ongoing-status {
-  background: #f4a261; /* Warm Orange for 'Ongoing' */
+.upcoming-status {
+  background: #f4a261; /* Warm Orange for 'Upcoming' */
   color: white;
   /* padding: 5px 10px; */
   border-radius: 6px;

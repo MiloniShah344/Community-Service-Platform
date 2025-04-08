@@ -31,7 +31,7 @@ const EditProjectDialog = ({ project, onSave, onClose }) => {
 
         <label>Status</label>
         <select name="State" value={editedProject.State} onChange={handleChange}>
-          <option value="Ongoing">Ongoing</option>
+          <option value="Upcoming">Upcoming</option>
           <option value="Completed">Completed</option>
         </select>
 

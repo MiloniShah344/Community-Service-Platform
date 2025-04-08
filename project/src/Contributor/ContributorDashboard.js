@@ -27,19 +27,16 @@ function NGODashboard() {
 
           <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
             <div className="sidebar-item" onClick={toggleSidebar} style={{fontWeight: 700}}>
-              <a href="/profile">Profile</a>
+              <a href="/contributor-profile">Profile</a>
             </div>
             <div className="sidebar-item" onClick={toggleSidebar}>
-              <a href="/post-project">Post Project</a>
+              <a href="/upcoming-project">Upcoming Projects</a>
             </div>
             <div className="sidebar-item" onClick={toggleSidebar}>
-              <a href="/manage-projects">Manage Projects</a>
+              <a href="/participated-projects">Participated Projects</a>
             </div>
             <div className="sidebar-item" onClick={toggleSidebar}>
-              <a href="/view-volunteers">View Volunteers</a>
-            </div>
-            <div className="sidebar-item" onClick={toggleSidebar}>
-              <a href="/manage-donations">View Donations</a>
+              <a href="/reciepts">Reciepts</a>
             </div>
           </div>
 

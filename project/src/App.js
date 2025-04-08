@@ -16,6 +16,10 @@ import MainDashboard from './Main Page/MainDashboard.js';
 import NGODashboard1 from './NGO/NGODashboard1.js';
 import NGOCurrentProjects from './NGO/NGOCurrentProjects.js';
 import ContributorDashboard from './Contributor/ContributorDashboard.js';
+import ContProfile from './Contributor/ContProfile.js';
+import UpcomingProjects from './Contributor/UpcomingProjects.js';
+import ParticipatedProjects from './Contributor/ParticipatedProjects.js';
+import Reciepts from './Contributor/Reciepts.js';
 function App() {
 
  
@@ -40,6 +44,10 @@ function App() {
 
         
         <Route path='/ContributorDashboard' element={<ContributorDashboard/>}/>
+        <Route path='/contributor-profile' element={<ContProfile/>}/>
+        <Route path='/upcoming-project' element={<UpcomingProjects/>}/>
+        <Route path='/participated-projects' element={<ParticipatedProjects/>}/>
+        <Route path='/reciepts' element={<Reciepts/>}/>
 
         
         <Route path='/NGORegister' element={<NGORegister/>}/>

@@ -10,7 +10,7 @@ let ProjectSchema =  mongoose.Schema({
         type: String,
         required: true
     },
-    State: {             //Ongoing, completed
+    State: {             //Upcoming, completed
         type: String,
         required: true
     },

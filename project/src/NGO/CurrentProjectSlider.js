@@ -158,7 +158,7 @@ import axios from 'axios'
 const CurrentProjectSlider = () => {
 
   const [projects, setProjects] = useState([])
-  let state = {"State": "Ongoing"}
+  let state = {"State": "Upcoming"}
 
 const handleClick = ()=>{
   console.log("In handleClick")

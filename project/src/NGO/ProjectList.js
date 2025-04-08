@@ -5,15 +5,15 @@ import { Edit, Delete } from "@mui/icons-material";
 const ProjectList = () => {
   // Dummy Projects Data
   const [projects, setProjects] = useState([
-    { ProjectName: "Tree Plantation Drive", StartDate: "March 15, 2025", State: "Ongoing", City: "Ahmedabad", Description: "Planting 500+ trees in urban areas." },
+    { ProjectName: "Tree Plantation Drive", StartDate: "March 15, 2025", State: "Upcoming", City: "Ahmedabad", Description: "Planting 500+ trees in urban areas." },
     { ProjectName: "Food Distribution", StartDate: "April 5, 2025", State: "Completed", City: "Surat", Description: "Providing free meals to underprivileged families." },
-    { ProjectName: "Education for All", StartDate: "May 10, 2025", State: "Ongoing", City: "Vadodara", Description: "Empowering children through free education." },
+    { ProjectName: "Education for All", StartDate: "May 10, 2025", State: "Upcoming", City: "Vadodara", Description: "Empowering children through free education." },
     { ProjectName: "Blood Donation Camp", StartDate: "June 20, 2025", State: "Completed", City: "Rajkot", Description: "Encouraging blood donations to save lives." },
-    { ProjectName: "Clean Water Initiative", StartDate: "July 8, 2025", State: "Ongoing", City: "Bhavnagar", Description: "Providing clean drinking water to rural areas." },
+    { ProjectName: "Clean Water Initiative", StartDate: "July 8, 2025", State: "Upcoming", City: "Bhavnagar", Description: "Providing clean drinking water to rural areas." },
     { ProjectName: "Women Empowerment", StartDate: "Aug 12, 2025", State: "Completed", City: "Gandhinagar", Description: "Skill development for underprivileged women." },
-    { ProjectName: "Medical Checkup Camp", StartDate: "Sep 18, 2025", State: "Ongoing", City: "Anand", Description: "Free health checkups for needy individuals." },
+    { ProjectName: "Medical Checkup Camp", StartDate: "Sep 18, 2025", State: "Upcoming", City: "Anand", Description: "Free health checkups for needy individuals." },
     { ProjectName: "Orphanage Support", StartDate: "Oct 22, 2025", State: "Completed", City: "Jamnagar", Description: "Providing educational materials for orphans." },
-    { ProjectName: "Disaster Relief Drive", StartDate: "Nov 15, 2025", State: "Ongoing", City: "Bhuj", Description: "Emergency supplies for flood victims." },
+    { ProjectName: "Disaster Relief Drive", StartDate: "Nov 15, 2025", State: "Upcoming", City: "Bhuj", Description: "Emergency supplies for flood victims." },
     { ProjectName: "Tech for Youth", StartDate: "Dec 5, 2025", State: "Completed", City: "Mehsana", Description: "Teaching coding & digital skills to youth." },
   ]);
 
@@ -49,7 +49,7 @@ const ProjectList = () => {
                 <td>{project.ProjectName}</td>
                 <td>{project.StartDate}</td>
                 <td>
-                  <span className={project.State === "Ongoing" ? "ongoing-status" : "completed-status"}>
+                  <span className={project.State === "Upcoming" ? "upcoming-status" : "completed-status"}>
                     {project.State}
                   </span>
                 </td>

@@ -95,4 +95,27 @@ const getSpecificCont = (req, res) => {
   }
 }
 
-module.exports = {createContributor, getContributor, getSpecificCont}
+const updateCont = (req,res)=>{
+    try{
+        Cont.updateOne({_id:req.query._id},req.body)
+        .then((data)=>{
+            console.log(data)
+            res.send({
+                isSuccess: true,
+                data: data
+            })
+        }).catch((err)=>{
+            res.send({
+                isSuccess: false,
+                message: err
+            })
+        })
+    }catch(err){
+        res.send({
+            isSuccess: false,
+            message: err
+        })
+    }
+}
+
+module.exports = {createContributor, getContributor, getSpecificCont, updateCont}

@@ -1,0 +1,99 @@
+.upcoming-container {
+  padding: 30px;
+}
+
+.upcoming-heading {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.upcoming-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.upcoming-table th, .upcoming-table td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.upcoming-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  color: #333;
+}
+
+.view-btn {
+  background-color: #82c0cc;
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.view-btn:hover {
+  background-color: #69aab8;
+}
+
+/* Dialog Styles */
+.dialog-title {
+  font-size: 22px;
+  font-weight: 600;
+  background: #f4f6f8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialog-content p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.dialog-actions {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.volunteer-btn, .donate-btn {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+  padding: 8px 18px;
+  border: none;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.donate-btn {
+  background-color: #ff4081;
+}
+
+.volunteer-btn:hover {
+  background-color: #45a049;
+}
+
+.donate-btn:hover {
+  background-color: #f50057;
+}
+
+.close-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}

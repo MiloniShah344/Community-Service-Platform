@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import NGONavbar from './NGONavbar';
+import ContNavbar from './ContNavbar'
+import Footer from '../Main Page/Footer'
 
 export default structure = () =>{
 
@@ -11,25 +12,22 @@ export default structure = () =>{
     return(
         <div className="mainBody">
       <div className="dashboard-container">
-        <NGONavbar toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+        <ContNavbar toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
         <div className="mainWindow">
-          <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
-            <div className="sidebar-item" onClick={toggleSidebar} style={{ fontWeight: 700 }}>
-              <a href="/profile">Profile</a>
-            </div>
-            <div className="sidebar-item" onClick={toggleSidebar}>
-              <a href="/post-project">Enrolled Project</a>
-            </div>
-            <div className="sidebar-item" onClick={toggleSidebar}>
-              <a href="/manage-projects">Upcoming Projects</a>
-            </div>
-            <div className="sidebar-item" onClick={toggleSidebar}>
-              <a href="/view-volunteers">View Volunteers</a>
-            </div>
-            <div className="sidebar-item" onClick={toggleSidebar}>
-              <a href="/manage-donations">View Donations</a>
-            </div>
-          </div>
+          <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+                      <div className="sidebar-item" onClick={toggleSidebar} style={{fontWeight: 700}}>
+                        <a href="/contributor-profile">Profile</a>
+                      </div>
+                      <div className="sidebar-item" onClick={toggleSidebar}>
+                        <a href="/upcoming-project">Upcoming Projects</a>
+                      </div>
+                      <div className="sidebar-item" onClick={toggleSidebar}>
+                        <a href="/participated-projects">Participated Projects</a>
+                      </div>
+                      <div className="sidebar-item" onClick={toggleSidebar}>
+                        <a href="/reciepts">Reciepts</a>
+                      </div>
+                    </div>
           <div className="projects-container">
             <h2 className="projects-heading">All NGO Projects</h2>
         </div>

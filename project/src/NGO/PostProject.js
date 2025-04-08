@@ -9,18 +9,18 @@ const PostProject = () => {
   const [data, setData] = useState({
     ProjectName: "",
     StartDate: "",
-    State: "Ongoing",
+    State: "Upcoming",
     City: "",
     Description: "",
   });
 
   const handleChange = (e) => {
-    setData({ ...data, State: 'Ongoing', [e.target.name]: e.target.value });
+    setData({ ...data, State: 'Upcoming', [e.target.name]: e.target.value });
     console.log(data)
   };
 
   const handleSubmit = () => {
-    setData({...data, State: "Ongoing"})
+    setData({...data, State: "Upcoming"})
     console.log("Project Submitted:", data);
     axios.post(`http://localhost:4000/createProject`, data)
             .then((res) => {
@@ -82,14 +82,14 @@ const PostProject = () => {
           select
           label="State"
           name="State"
-          value="Ongoing"
+          value="Upcoming"
           onChange = {(e)=>{handleChange(e)}}
           fullWidth
           variant="outlined"
           className="input-field"
           disabled
         >
-          <MenuItem value="Ongoing">Ongoing</MenuItem>
+          <MenuItem value="Upcoming">Upcoming</MenuItem>
           <MenuItem value="Completed">Completed</MenuItem>
         </TextField>
 

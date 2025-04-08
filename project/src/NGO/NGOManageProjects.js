@@ -139,7 +139,7 @@ const NGOManageProjects = () => {
                   <tr key={index}>
                     <td>{project.ProjectName}</td>
                     <td>{project.StartDate}</td>
-                    <td className={project.State === "Ongoing" ? "ongoing-status" : "completed-status"}>
+                    <td className={project.State === "Upcoming" ? "upcoming-status" : "completed-status"}>
                       {project.State}
                     </td>
                     <td>{project.City}</td>
