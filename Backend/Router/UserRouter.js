@@ -9,6 +9,7 @@ const {createContributor, getContributor, getSpecificCont, updateCont} = require
 const {createProject, getAllProjects, getSpecificProject, getOneProject, updateProject, deleteProject, getProjectByName} = require('../Controller/ProjectController')
 const {createVolGrowth, getVolGrowth} = require('../Controller/VolGrowthController')
 const {createCompletedPrj, getCompletedPrj} = require('../Controller/CompletedPrjController')
+const {saveReceipt, getReceipts} = require('../Controller/RecieptController')
 
 
 let mw = (req, res, next) =>{
@@ -58,6 +59,9 @@ router.get('/getVolGrowth', getVolGrowth)
 
 router.post('/createCompletedPrj', createCompletedPrj)
 router.get('/getCompletedPrj', getCompletedPrj)
+
+router.post('/saveReceipt', saveReceipt);
+router.get('/getReceipts',getReceipts );
 
 
 module.exports = router

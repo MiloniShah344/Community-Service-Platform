@@ -1,0 +1,99 @@
+.participated-container {
+  padding: 30px;
+}
+
+.participated-heading {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.table-container {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.participated-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.participated-table th,
+.participated-table td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.participated-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  color: #333;
+}
+
+.view-btn {
+  background-color: #374785; /* Deep slate blue */
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.view-btn:hover {
+  background-color: #1f2a52; /* Darker hover */
+}
+
+/* Reusing dialog styles from UpcomingProjects */
+
+.dialog-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #3a3a3a;
+  background: #f3e8ff; /* light lavender */
+  padding: 16px;
+  border-bottom: 1px solid #e0d4f7;
+  border-radius: 12px 12px 0 0;
+  position: relative;
+}
+
+.dialog-content {
+  padding: 16px;
+  background-color: #fef6f9; /* pastel pink */
+  color: #444;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.dialog-content p {
+  margin: 12px 0;
+}
+
+.dialog-actions {
+  padding: 16px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fef6f9;
+  border-top: 1px solid #eee;
+  border-radius: 0 0 12px 12px;
+}
+
+.close-btn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: #555;
+  background-color: transparent;
+  transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+  color: #000;
+}

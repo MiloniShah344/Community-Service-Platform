@@ -36,17 +36,18 @@
 }
 
 .view-btn {
-  background-color: #82c0cc;
-  border: none;
-  padding: 8px 14px;
+  background-color: #374785; /* Deep slate blue */
   color: white;
+  padding: 8px 14px;
   border-radius: 6px;
+  border: none;
   cursor: pointer;
-  transition: background 0.3s;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
 .view-btn:hover {
-  background-color: #69aab8;
+  background-color: #1f2a52; /* Darker hover */
 }
 
 /* Dialog Styles */

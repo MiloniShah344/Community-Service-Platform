@@ -1,3 +1,4 @@
+// All your existing imports
 import React, { useState, useEffect } from 'react';
 import ContNavbar from './ContNavbar';
 import Footer from '../Main Page/Footer';
@@ -12,6 +13,8 @@ import {
   Slide,
   TextField,
   IconButton,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -25,13 +28,14 @@ const UpcomingProjects = () => {
   const [openDonationDialog, setOpenDonationDialog] = useState(false);
   const [donationAmount, setDonationAmount] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'success' });
+
   const uniqueId = localStorage.getItem("UniqueIdAtLogin");
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // Fetch upcoming projects
   useEffect(() => {
     axios
       .post(`http://localhost:4000/getSpecificProject`, { State: "Upcoming" })
@@ -39,11 +43,10 @@ const UpcomingProjects = () => {
       .catch((err) => console.log("Error fetching upcoming projects:", err));
   }, []);
 
-  // Fetch user
   useEffect(() => {
     if (uniqueId) {
       axios
-        .get(`http://localhost:4000/getSpecificContributor?UniqueId=${uniqueId}`)
+        .get(`http://localhost:4000/getSpecificCont?UniqueId=${uniqueId}`)
         .then((res) => setUser(res.data.data))
         .catch((err) => console.error("Error fetching contributor:", err));
     }
@@ -56,39 +59,74 @@ const UpcomingProjects = () => {
 
   const handleVolunteer = () => {
     if (!user || !selectedProject) return;
-    const updatedProjects = [...user.projectsVolunteered, selectedProject.ProjectName];
 
-    axios
-      .post(`http://localhost:4000/updateCont?_id=${user._id}`, {
-        projectsVolunteered: updatedProjects,
-      })
-      .then((res) => {
-        console.log("Volunteered successfully:", res);
-        setOpenVolunteerDialog(false);
-        setOpenDetailsDialog(false);
-      })
-      .catch((err) => console.error("Error volunteering:", err));
+    const isAlreadyVolunteered = user.projectsVolunteered.includes(selectedProject.ProjectName);
+    if (isAlreadyVolunteered) {
+      setSnackbar({ open: true, message: "Already volunteered for this project!", severity: "info" });
+    } else {
+      const updatedUser = {
+        ...user,
+        projectsVolunteered: [...user.projectsVolunteered, selectedProject.ProjectName],
+      };
+
+      axios
+        .put(`http://localhost:4000/updateCont?_id=${user._id}`, updatedUser)
+        .then((res) => {
+          setUser(updatedUser); // update local user state
+          setSnackbar({ open: true, message: "Volunteered successfully!", severity: "success" });
+        })
+        .catch((err) => {
+          console.error("Error volunteering:", err);
+          setSnackbar({ open: true, message: "Failed to volunteer!", severity: "error" });
+        });
+    }
+
+    setOpenVolunteerDialog(false);
+    setOpenDetailsDialog(false);
   };
 
   const handleDonation = () => {
-    if (!user || !selectedProject || !donationAmount) return;
-    const updatedDonations = {
-      ...user.donation,
-      [selectedProject.ProjectName]: donationAmount,
-    };
+  if (!user || !selectedProject || !donationAmount) return;
 
-    axios
-      .post(`http://localhost:4000/updateCont?_id=${user._id}`, {
-        donation: updatedDonations,
-      })
-      .then((res) => {
-        console.log("Donated:", donationAmount);
-        setDonationAmount('');
-        setOpenDonationDialog(false);
-        setOpenDetailsDialog(false);
-      })
-      .catch((err) => console.error("Donation error:", err));
+  const updatedDonations = {
+    ...user.donation,
+    [selectedProject.ProjectName]: donationAmount,
   };
+
+  const updatedUser = {
+    ...user,
+    donation: updatedDonations,
+  };
+
+  axios
+    .put(`http://localhost:4000/updateCont?_id=${user._id}`, updatedUser)
+    .then((res) => {
+      // Save Receipt
+      const receiptData = {
+        userId: user.UniqueId,
+        projectName: selectedProject.ProjectName,
+        amount: Number(donationAmount),
+        city: selectedProject.City,
+        startDate: selectedProject.StartDate,
+        status: selectedProject.State,
+        description: selectedProject.Description
+      };
+
+      axios.post("http://localhost:4000/saveReceipt", receiptData);
+
+      setUser(updatedUser);
+      setDonationAmount('');
+      setSnackbar({ open: true, message: "Donation successful!", severity: "success" });
+    })
+    .catch((err) => {
+      console.error("Donation error:", err);
+      setSnackbar({ open: true, message: "Failed to donate!", severity: "error" });
+    });
+
+  setOpenDonationDialog(false);
+  setOpenDetailsDialog(false);
+};
+
 
   return (
     <div className="mainBody">
@@ -140,36 +178,109 @@ const UpcomingProjects = () => {
       </div>
 
       {/* Project Details Dialog */}
-      <Dialog open={openDetailsDialog} onClose={() => setOpenDetailsDialog(false)} maxWidth="sm" fullWidth>
-        <DialogTitle className="dialog-title">
-          {selectedProject?.ProjectName}
-          <IconButton className="close-btn" onClick={() => setOpenDetailsDialog(false)}>
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent className="dialog-content">
-          <p><strong>City:</strong> {selectedProject?.City}</p>
-          <p><strong>Start Date:</strong> {selectedProject?.StartDate}</p>
-          <p><strong>Status:</strong> {selectedProject?.State}</p>
-          <p><strong>Description:</strong> {selectedProject?.Description}</p>
-        </DialogContent>
-        <DialogActions className="dialog-actions">
-          <Button onClick={() => setOpenVolunteerDialog(true)} className="volunteer-btn">Volunteer</Button>
-          <Button onClick={() => setOpenDonationConfirmDialog(true)} className="donate-btn">Donate</Button>
-        </DialogActions>
-      </Dialog>
+      <Dialog
+  open={openDetailsDialog}
+  onClose={() => setOpenDetailsDialog(false)}
+  maxWidth="sm"
+  fullWidth
+  PaperProps={{
+    style: {
+      borderRadius: '16px',
+      background: '#fafafa',
+      boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+      padding: '20px',
+    },
+  }}
+>
+  <DialogTitle style={{ color: '#374785', fontSize: '22px', fontWeight: 'bold', float: 'left' }}>
+    {selectedProject?.ProjectName}
+    {/* <IconButton onClick={() => setOpenDetailsDialog(false)} style={{ float: 'right' }}>
+      <CloseIcon />
+    </IconButton> */}
+  </DialogTitle>
+  <DialogContent dividers style={{ fontSize: '15px' }}>
+    <p><strong>City:</strong> {selectedProject?.City}</p>
+    <p><strong>Start Date:</strong> {selectedProject?.StartDate}</p>
+    <p><strong>Status:</strong> {selectedProject?.State}</p>
+    <p><strong>Description:</strong> {selectedProject?.Description}</p>
+  </DialogContent>
+  <DialogActions>
+    <Button
+      onClick={() => setOpenVolunteerDialog(true)}
+      style={{
+        backgroundColor: '#6a8caf',
+        color: 'white',
+        borderRadius: '8px',
+        padding: '8px 18px',
+      }}
+      onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3b5b76'}
+      onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#6a8caf'}
+    >
+      Volunteer
+    </Button>
+    <Button
+      onClick={() => setOpenDonationConfirmDialog(true)}
+      style={{
+        backgroundColor: '#b27ba6',
+        color: 'white',
+        borderRadius: '8px',
+        padding: '8px 18px',
+      }}
+      onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#8e5d85'}
+      onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#b27ba6'}
+    >
+      Donate
+    </Button>
+  </DialogActions>
+</Dialog>
+
 
       {/* Volunteer Confirm Dialog */}
-      <Dialog open={openVolunteerDialog} onClose={() => setOpenVolunteerDialog(false)}>
-        <DialogTitle>Confirm Volunteering</DialogTitle>
-        <DialogContent>
-          Are you sure you want to volunteer in <b>{selectedProject?.ProjectName}</b>?
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenVolunteerDialog(false)}>Cancel</Button>
-          <Button onClick={handleVolunteer} className="volunteer-btn">Yes</Button>
-        </DialogActions>
-      </Dialog>
+      <Dialog
+  open={openVolunteerDialog}
+  onClose={() => setOpenVolunteerDialog(false)}
+  PaperProps={{
+    style: {
+      borderRadius: '16px',
+      background: '#fffaf5',
+      padding: '20px',
+      boxShadow: '0 6px 20px rgba(0,0,0,0.1)',
+    },
+  }}
+>
+  <DialogTitle style={{ color: '#374785', fontWeight: '600' }}>
+    Confirm Volunteering
+  </DialogTitle>
+  <DialogContent>
+    Are you sure you want to volunteer for <b>{selectedProject?.ProjectName}</b>?
+  </DialogContent>
+  <DialogActions>
+    <Button
+      onClick={() => setOpenVolunteerDialog(false)}
+      style={{
+        backgroundColor: '#aaa',
+        color: 'white',
+        borderRadius: '6px',
+        padding: '6px 16px',
+      }}
+    >
+      Cancel
+    </Button>
+    <Button
+      onClick={handleVolunteer}
+      style={{
+        backgroundColor: '#6a8caf',
+        color: 'white',
+        borderRadius: '6px',
+        padding: '6px 16px',
+        fontWeight: 'bold',
+      }}
+    >
+      Yes
+    </Button>
+  </DialogActions>
+</Dialog>
+
 
       {/* Donation Confirmation Dialog */}
       <Dialog open={openDonationConfirmDialog} onClose={() => setOpenDonationConfirmDialog(false)}>
@@ -203,6 +314,18 @@ const UpcomingProjects = () => {
           <Button onClick={handleDonation} className="donate-btn">Donate Now</Button>
         </DialogActions>
       </Dialog>
+
+      {/* Snackbar for feedback */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={3000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={() => setSnackbar({ ...snackbar, open: false })} severity={snackbar.severity} variant="filled">
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
 
       <Footer />
     </div>

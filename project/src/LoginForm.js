@@ -41,14 +41,17 @@ const LoginForm = () => {
   }
 
   const handleLogin = () => {
-    console.log("Data")
+    console.log("Data", data)
     axios.post('http://localhost:4000/login', data)
       .then((res) => {
         doupdate(!update)
+        // const uI = localStorage.getItem('UniqueId')
         console.log("res.data in handlelogin", res.data)
+
         console.log("res.data.data.UniqueId", res.data.data.UniqueId)
         console.log("res.data.token",res.data.token)
         localStorage.setItem("token", res.data.token)
+        // localStorage.setItem("UniqueIdAtLogin", uI)
         localStorage.setItem("UniqueIdAtLogin", res.data.data.UniqueId)
         setAlert({
           value: true,
