@@ -54,14 +54,15 @@
 /* Reusing dialog styles from UpcomingProjects */
 
 .dialog-title {
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 22px !important;
+  font-weight: 700 !important;
   color: #3a3a3a;
   background: #f3e8ff; /* light lavender */
   padding: 16px;
   border-bottom: 1px solid #e0d4f7;
   border-radius: 12px 12px 0 0;
   position: relative;
+  justify-content: center;
 }
 
 .dialog-content {

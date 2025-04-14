@@ -47,7 +47,10 @@ const UpcomingProjects = () => {
     if (uniqueId) {
       axios
         .get(`http://localhost:4000/getSpecificCont?UniqueId=${uniqueId}`)
-        .then((res) => setUser(res.data.data))
+        .then((res) => {
+          console.log("res.data.data in getSpecificCont", res.data.data)
+          setUser(res.data.data)
+        })
         .catch((err) => console.error("Error fetching contributor:", err));
     }
   }, [uniqueId]);
@@ -72,6 +75,7 @@ const UpcomingProjects = () => {
       axios
         .put(`http://localhost:4000/updateCont?_id=${user._id}`, updatedUser)
         .then((res) => {
+          console.log("updatedUser", updatedUser)
           setUser(updatedUser); // update local user state
           setSnackbar({ open: true, message: "Volunteered successfully!", severity: "success" });
         })

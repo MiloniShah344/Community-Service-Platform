@@ -15,17 +15,28 @@ const DonatedProjects = () => {
   const [user, setUser] = useState({});
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  
+  const uId = parseInt(localStorage.getItem("UniqueIdAtLogin"));
 
   useEffect(() => {
-    setUser({
-      name: "John Doe",
-      age: 25,
-      city: "New York",
-      phone: 9876543210,
-      gender: "Male",
-      projectsVolunteered: ["Tree Plantation Drive", "Food Distribution", "Education for All"],
-      donation: { "Education for All": 5000, "Medical Checkup Camp": 10000 },
-    });
+    // setUser({
+    //   name: "John Doe",
+    //   age: 25,
+    //   city: "New York",
+    //   phone: 9876543210,
+    //   gender: "Male",
+    //   projectsVolunteered: ["Tree Plantation Drive", "Food Distribution", "Education for All"],
+    //   donation: { "Education for All": 5000, "Medical Checkup Camp": 10000 },
+    // });
+    axios
+      .get(`http://localhost:4000/getSpecificCont?UniqueId=${uId}`)
+      .then((res) => {
+        setUser(res.data.data);
+        console.log("User in useEffect", res.data.data)
+      })
+      .catch((err) => {
+        console.error("Error fetching contributor data:", err);
+      });
   }, []);
 
   useEffect(() => {
@@ -67,7 +78,7 @@ const DonatedProjects = () => {
             modules={[Navigation, Pagination, Autoplay]}
             navigation
             pagination={{ clickable: true }}
-            autoplay={{ delay: 4000 }}
+            autoplay={{ delay: 2000 }}
             loop
             spaceBetween={20}
             slidesPerView={1}

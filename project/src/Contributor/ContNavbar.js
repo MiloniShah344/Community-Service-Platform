@@ -11,7 +11,7 @@ import './ContNavbar.css'
 
 import AlertDialog from '../Main Page/Dialog'
 
-const ContNavbar = ({toggleSidebar}) =>{
+const   ContNavbar = ({toggleSidebar}) =>{
 
     // const [open, setOpen] = useState(false);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -52,7 +52,7 @@ const ContNavbar = ({toggleSidebar}) =>{
                 component="div"
                 sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                 class='app-name'
-                onClick = {()=>{navigate('/NGODashboard')}}
+                onClick = {()=>{navigate('/ContributorDashboard')}}
               >
                 Connecting Goodness
               </Typography>

@@ -228,3 +228,11 @@ th{
   justify-content: center;
   margin: 150px 30px;
 }
+
+.contributor-content .currentProjects{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px 30px;
+}

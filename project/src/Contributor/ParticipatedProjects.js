@@ -92,7 +92,7 @@ const ParticipatedProjects = () => {
                     <th>Project Name</th>
                     <th>Volunteered</th>
                     <th>Amount Donated</th>
-                    <th>Actions</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>

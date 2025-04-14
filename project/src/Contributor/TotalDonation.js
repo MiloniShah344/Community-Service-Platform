@@ -7,7 +7,7 @@ const TotalDonation = ({ donationData }) => {
 
   useEffect(() => {
     if (donationData) {
-      const total = Object.values(donationData).reduce((sum, amount) => sum + amount, 0);
+      const total = Object.values(donationData).reduce((sum, amount) => sum + parseInt(amount), 0);
       setTotalAmount(total);
     }
   }, [donationData]);

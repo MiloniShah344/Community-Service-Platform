@@ -95,8 +95,17 @@ const getSpecificCont = (req, res) => {
   }
 }
 
-const updateCont = (req,res)=>{
+const updateCont = async (req,res)=>{
     try{
+
+      // const id = req.query._id
+      // const updatedCont = req.body
+
+      // const existingCont = await Cont.findById(id)
+      // if(!existingCont){
+      //   return res.status(404).send({ isSuccess: false, message: "Contributor not found" });
+      // }
+      
         Cont.updateOne({_id:req.query._id},req.body)
         .then((data)=>{
             console.log(data)
@@ -110,6 +119,36 @@ const updateCont = (req,res)=>{
                 message: err
             })
         })
+
+    //     if (updatedCont.donation) {
+    //   for (let projectName in updatedCont.donation) {
+    //     const amount = updatedCont.donation[projectName];
+    //     // Update donation object
+    //     existingCont.donation[projectName] = (existingCont.donation[projectName] || 0) + amount;
+
+    //     // ✅ Update donationDetails
+    //     existingCont.donationDetails.set(projectName, {
+    //       amount: amount,
+    //       date: new Date().toLocaleString("en-IN", { hour12: true }),
+    //     });
+    //   }
+    // }
+
+    // // ✅ Handle projectsVolunteered (prevent duplicates)
+    // if (updatedCont.projectsVolunteered) {
+    //   updatedCont.projectsVolunteered.forEach((project) => {
+    //     if (!existingCont.projectsVolunteered.includes(project)) {
+    //       existingCont.projectsVolunteered.push(project);
+    //     }
+    //   });
+    // }
+
+    // await existingCont.save();
+
+    // res.send({ isSuccess: true, message: "Contributor updated successfully", updatedCont: existingCont });
+  
+
+
     }catch(err){
         res.send({
             isSuccess: false,

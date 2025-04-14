@@ -15,15 +15,23 @@ const EnrolledProjects = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    setUser({
-      name: "John Doe",
-      age: 25,
-      city: "New York",
-      phone: 9876543210,
-      gender: "Male",
-      projectsVolunteered: ["Tree Plantation Drive", "Food Distribution", "Education for All"],
-      donation: { "Education for All": 50, "Medical Checkup Camp": 100 }
-    });
+    // setUser({
+    //   name: "John Doe",
+    //   age: 25,
+    //   city: "New York",
+    //   phone: 9876543210,
+    //   gender: "Male",
+    //   projectsVolunteered: ["Tree Plantation Drive", "Food Distribution", "Education for All"],
+    //   donation: { "Education for All": 50, "Medical Checkup Camp": 100 }
+    // });
+    axios
+      .get(`http://localhost:4000/getSpecificCont?UniqueId=${uId}`)
+      .then((res) => {
+        setUser(res.data.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching contributor data:", err);
+      });
   }, []);
 
   useEffect(() => {

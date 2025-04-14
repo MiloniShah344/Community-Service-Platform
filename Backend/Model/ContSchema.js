@@ -34,7 +34,15 @@ let ContSchema =  mongoose.Schema({
     UniqueId: {
         type: Number,
         require: true
-    }
+    },
+    donationDetails: {
+    type: Map,
+    of: new mongoose.Schema({
+      amount: Number,
+      date: String,
+    }, { _id: false }),
+    default: {}
+  }
 })
 
 let Cont = mongoose.model("Cont", ContSchema)
@@ -52,7 +60,8 @@ const validateCont = (Cont)=> {
         gender: joi.string(),
         projectsVolunteered: joi.array(),
         donation: joi.object(),
-        UniqueId: joi.required()
+        UniqueId: joi.number().required(),
+        
     })
     return joiSchema.validate(Cont)
 }
