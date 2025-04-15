@@ -90,46 +90,46 @@ const UpcomingProjects = () => {
   };
 
   const handleDonation = () => {
-  if (!user || !selectedProject || !donationAmount) return;
+    if (!user || !selectedProject || !donationAmount) return;
 
-  const updatedDonations = {
-    ...user.donation,
-    [selectedProject.ProjectName]: donationAmount,
+    const updatedDonations = {
+      ...user.donation,
+      [selectedProject.ProjectName]: donationAmount,
+    };
+
+    const updatedUser = {
+      ...user,
+      donation: updatedDonations,
+    };
+
+    axios
+      .put(`http://localhost:4000/updateCont?_id=${user._id}`, updatedUser)
+      .then((res) => {
+        // Save Receipt
+        const receiptData = {
+          userId: user.UniqueId,
+          projectName: selectedProject.ProjectName,
+          amount: Number(donationAmount),
+          city: selectedProject.City,
+          startDate: selectedProject.StartDate,
+          status: selectedProject.State,
+          description: selectedProject.Description
+        };
+
+        axios.post("http://localhost:4000/saveReceipt", receiptData);
+
+        setUser(updatedUser);
+        setDonationAmount('');
+        setSnackbar({ open: true, message: "Donation successful!", severity: "success" });
+      })
+      .catch((err) => {
+        console.error("Donation error:", err);
+        setSnackbar({ open: true, message: "Failed to donate!", severity: "error" });
+      });
+
+    setOpenDonationDialog(false);
+    setOpenDetailsDialog(false);
   };
-
-  const updatedUser = {
-    ...user,
-    donation: updatedDonations,
-  };
-
-  axios
-    .put(`http://localhost:4000/updateCont?_id=${user._id}`, updatedUser)
-    .then((res) => {
-      // Save Receipt
-      const receiptData = {
-        userId: user.UniqueId,
-        projectName: selectedProject.ProjectName,
-        amount: Number(donationAmount),
-        city: selectedProject.City,
-        startDate: selectedProject.StartDate,
-        status: selectedProject.State,
-        description: selectedProject.Description
-      };
-
-      axios.post("http://localhost:4000/saveReceipt", receiptData);
-
-      setUser(updatedUser);
-      setDonationAmount('');
-      setSnackbar({ open: true, message: "Donation successful!", severity: "success" });
-    })
-    .catch((err) => {
-      console.error("Donation error:", err);
-      setSnackbar({ open: true, message: "Failed to donate!", severity: "error" });
-    });
-
-  setOpenDonationDialog(false);
-  setOpenDetailsDialog(false);
-};
 
 
   return (
@@ -183,107 +183,114 @@ const UpcomingProjects = () => {
 
       {/* Project Details Dialog */}
       <Dialog
-  open={openDetailsDialog}
-  onClose={() => setOpenDetailsDialog(false)}
-  maxWidth="sm"
-  fullWidth
-  PaperProps={{
-    style: {
-      borderRadius: '16px',
-      background: '#fafafa',
-      boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
-      padding: '20px',
-    },
-  }}
->
-  <DialogTitle style={{ color: '#374785', fontSize: '22px', fontWeight: 'bold', float: 'left' }}>
-    {selectedProject?.ProjectName}
-    {/* <IconButton onClick={() => setOpenDetailsDialog(false)} style={{ float: 'right' }}>
+        open={openDetailsDialog}
+        onClose={() => setOpenDetailsDialog(false)}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          style: {
+            borderRadius: '16px',
+            background: '#fafafa',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+            padding: '20px',
+          },
+        }}
+      >
+        <DialogTitle style={{ color: '#374785', fontSize: '22px', fontWeight: 'bold', float: 'left' }}>
+          {selectedProject?.ProjectName}
+          {/* <IconButton onClick={() => setOpenDetailsDialog(false)} style={{ float: 'right' }}>
       <CloseIcon />
     </IconButton> */}
-  </DialogTitle>
-  <DialogContent dividers style={{ fontSize: '15px' }}>
-    <p><strong>City:</strong> {selectedProject?.City}</p>
-    <p><strong>Start Date:</strong> {selectedProject?.StartDate}</p>
-    <p><strong>Status:</strong> {selectedProject?.State}</p>
-    <p><strong>Description:</strong> {selectedProject?.Description}</p>
-  </DialogContent>
-  <DialogActions>
-    <Button
-      onClick={() => setOpenVolunteerDialog(true)}
-      style={{
-        backgroundColor: '#6a8caf',
-        color: 'white',
-        borderRadius: '8px',
-        padding: '8px 18px',
-      }}
-      onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3b5b76'}
-      onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#6a8caf'}
-    >
-      Volunteer
-    </Button>
-    <Button
-      onClick={() => setOpenDonationConfirmDialog(true)}
-      style={{
-        backgroundColor: '#b27ba6',
-        color: 'white',
-        borderRadius: '8px',
-        padding: '8px 18px',
-      }}
-      onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#8e5d85'}
-      onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#b27ba6'}
-    >
-      Donate
-    </Button>
-  </DialogActions>
-</Dialog>
+        </DialogTitle>
+        <DialogContent dividers style={{ fontSize: '15px' }}>
+          <p><strong>City:</strong> {selectedProject?.City}</p>
+          <p><strong>Start Date:</strong> {selectedProject?.StartDate}</p>
+          <p><strong>Status:</strong> {selectedProject?.State}</p>
+          <p><strong>Description:</strong> {selectedProject?.Description}</p>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => {
+              setOpenDetailsDialog(false);
+              setTimeout(() => setOpenVolunteerDialog(true), 300);
+            }}
+            style={{
+              backgroundColor: '#6a8caf',
+              color: 'white',
+              borderRadius: '8px',
+              padding: '8px 18px',
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#3b5b76'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#6a8caf'}
+          >
+            Volunteer
+          </Button>
+          <Button
+            onClick={() => {
+              setOpenDetailsDialog(false);
+              setTimeout(() => setOpenDonationConfirmDialog(true), 300)
+
+            }}
+            style={{
+              backgroundColor: '#b27ba6',
+              color: 'white',
+              borderRadius: '8px',
+              padding: '8px 18px',
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#8e5d85'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#b27ba6'}
+          >
+            Donate
+          </Button>
+        </DialogActions>
+      </Dialog>
 
 
       {/* Volunteer Confirm Dialog */}
       <Dialog
-  open={openVolunteerDialog}
-  onClose={() => setOpenVolunteerDialog(false)}
-  PaperProps={{
-    style: {
-      borderRadius: '16px',
-      background: '#fffaf5',
-      padding: '20px',
-      boxShadow: '0 6px 20px rgba(0,0,0,0.1)',
-    },
-  }}
->
-  <DialogTitle style={{ color: '#374785', fontWeight: '600' }}>
-    Confirm Volunteering
-  </DialogTitle>
-  <DialogContent>
-    Are you sure you want to volunteer for <b>{selectedProject?.ProjectName}</b>?
-  </DialogContent>
-  <DialogActions>
-    <Button
-      onClick={() => setOpenVolunteerDialog(false)}
-      style={{
-        backgroundColor: '#aaa',
-        color: 'white',
-        borderRadius: '6px',
-        padding: '6px 16px',
-      }}
-    >
-      Cancel
-    </Button>
-    <Button
-      onClick={handleVolunteer}
-      style={{
-        backgroundColor: '#6a8caf',
-        color: 'white',
-        borderRadius: '6px',
-        padding: '6px 16px',
-        fontWeight: 'bold',
-      }}
-    >
-      Yes
-    </Button>
-  </DialogActions>
-</Dialog>
+        open={openVolunteerDialog}
+        onClose={() => setOpenVolunteerDialog(false)}
+        PaperProps={{
+          style: {
+            borderRadius: '16px',
+            background: '#fffaf5',
+            padding: '20px',
+            boxShadow: '0 6px 20px rgba(0,0,0,0.1)',
+          },
+        }}
+      >
+        <DialogTitle style={{ color: '#374785', fontWeight: '600' }}>
+          Confirm Volunteering
+        </DialogTitle>
+        <DialogContent>
+          Are you sure you want to volunteer for <b>{selectedProject?.ProjectName}</b>?
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setOpenVolunteerDialog(false)}
+            style={{
+              backgroundColor: '#aaa',
+              color: 'white',
+              borderRadius: '6px',
+              padding: '6px 16px',
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleVolunteer}
+            style={{
+              backgroundColor: '#6a8caf',
+              color: 'white',
+              borderRadius: '6px',
+              padding: '6px 16px',
+              fontWeight: 'bold',
+            }}
+          >
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
 
 
       {/* Donation Confirmation Dialog */}
@@ -315,7 +322,7 @@ const UpcomingProjects = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDonationDialog(false)}>Cancel</Button>
-          <Button onClick={handleDonation} className="donate-btn">Donate Now</Button>
+          <Button onClick={handleDonation} className="donate-btn" disabled={!donationAmount || Number(donationAmount) <= 0}>Donate Now</Button>
         </DialogActions>
       </Dialog>
 

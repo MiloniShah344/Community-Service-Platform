@@ -146,7 +146,7 @@ function ContributorDashboard() {
                       },
                     }}
                     startIcon={<VolunteerActivismIcon />}
-                    onClick={()=>{navigate('/upcomingProjects')}}
+                    onClick={()=>{navigate('/upcoming-project')}}
                   >
                     View Opportunities
                   </Button>
