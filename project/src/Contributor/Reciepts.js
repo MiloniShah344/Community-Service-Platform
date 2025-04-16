@@ -6,9 +6,10 @@ import axios from 'axios';
 import ReceiptDialog from './RecieptDialog';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import './RecieptCard.css'; // using same CSS file
+import './RecieptCard.css';
+import ReactDOM from 'react-dom/client';
+
 import './UpcomingProjects.css';
-import ReactDOM from 'react-dom/client';  
 
 const Reciepts = () => {
   const [user, setUser] = useState(null);
@@ -34,7 +35,9 @@ const Reciepts = () => {
     }
   }, [uniqueId]);
 
-  const handleDownload = async (receipt) => {
+   // 👈 Add at top with your imports
+
+const handleDownload = async (receipt) => {
   const container = document.createElement('div');
   container.style.position = 'absolute';
   container.style.left = '-9999px';
@@ -64,11 +67,12 @@ const Reciepts = () => {
   }, 300);
 };
 
+
   return (
     <div className="mainBody">
       <div className="dashboard-container">
         <ContNavbar />
-        <div className="mainWindow">
+        <div className="mainWindow upcoming-container">
           <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
             <div className="sidebar-item" onClick={toggleSidebar}>
               <a href="/contributor-profile">Profile</a>

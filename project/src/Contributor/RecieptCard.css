@@ -1,3 +1,93 @@
+.receipt-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 30px;
+}
+
+.receipt-card {
+  background: #fefefe;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.receipt-card:hover {
+  transform: translateY(-4px);
+}
+
+.receipt-info h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #444;
+}
+
+.receipt-info p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.receipt-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.view-btn, .download-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-btn {
+  background-color: #90caf9;
+  color: #0d47a1;
+}
+
+.view-btn:hover {
+  background-color: #42a5f5;
+  color: white;
+}
+
+.download-btn {
+  background-color: #a5d6a7;
+  color: #1b5e20;
+}
+
+.download-btn:hover {
+  background-color: #66bb6a;
+  color: white;
+}
+
+/* Dialog Overlay */
+.receipt-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.receipt-dialog-content {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 650px;
+  width: 90%;
+}
+
 .real-receipt-container {
   display: flex;
   justify-content: center;
@@ -74,3 +164,4 @@
   color: #6a1b9a;
   font-weight: bold;
 }
+
