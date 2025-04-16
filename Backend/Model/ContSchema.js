@@ -42,7 +42,10 @@ let ContSchema =  mongoose.Schema({
       date: String,
     }, { _id: false }),
     default: {}
-  }
+  },
+    isVerified: {
+        type: Boolean
+    }
 })
 
 let Cont = mongoose.model("Cont", ContSchema)
@@ -61,6 +64,7 @@ const validateCont = (Cont)=> {
         projectsVolunteered: joi.array(),
         donation: joi.object(),
         UniqueId: joi.number().required(),
+        isVerified: joi.boolean().required()
         
     })
     return joiSchema.validate(Cont)

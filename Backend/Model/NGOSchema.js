@@ -18,6 +18,9 @@ let NgoSchema =  mongoose.Schema({
     },
     UniqueId: {
         type: Number
+    },
+    isVerified: {
+        type: Boolean
     }
 })
 
@@ -36,7 +39,8 @@ const validateNGO = (NGO)=> {
         .min(7000000000)
         .max(9999999999)
         .required(),
-        UniqueId: joi.required()
+        UniqueId: joi.required(),
+        isVerified: joi.boolean().required()
     })
     return joiSchema.validate(NGO)
 }

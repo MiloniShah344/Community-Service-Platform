@@ -42,14 +42,15 @@ const LoginForm = () => {
 
   const handleLogin = () => {
     console.log("Data", data)
-    axios.post('http://localhost:4000/login', data)
+    if(data.Role != "Admin"){
+      axios.post('http://localhost:4000/login', data)
       .then((res) => {
         doupdate(!update)
         // const uI = localStorage.getItem('UniqueId')
         console.log("res.data in handlelogin", res.data)
 
         console.log("res.data.data.UniqueId", res.data.data.UniqueId)
-        console.log("res.data.token",res.data.token)
+        console.log("res.data.token", res.data.token)
         localStorage.setItem("token", res.data.token)
         // localStorage.setItem("UniqueIdAtLogin", uI)
         localStorage.setItem("UniqueIdAtLogin", res.data.data.UniqueId)
@@ -58,23 +59,24 @@ const LoginForm = () => {
           msg: res.data.isSuccess ? "User Added!" : "Please enter all mandatory fields",
           type: res.data.isSuccess ? "success" : "error"
         })
-        if(res.data.isSuccess){
-            if (data.Role == "NGO") {
-          console.log("In NGO Register")   
-          navigate('/NGODashboard')
-          
+        if (res.data.isSuccess) {
+          if (data.Role == "NGO") {
+            console.log("In NGO Register")
+            navigate('/NGODashboard')
+
+          }
+          else if (data.Role == "Contributor") {
+            console.log("In Contributor Register")
+            navigate('/ContributorDashboard')
+          }
+          // else if (data.Role == "Admin") {
+          //   console.log("In Admin Register")
+          //   navigate('/AdminDashboard')
+          // }
         }
-        else if (data.Role == "Contributor") {
-          console.log("In Contributor Register")
-          navigate('/ContributorDashboard')
-        }
-        }
-        else{
+        else {
           window.alert("Incorrect Credentials!")
         }
-
-        
-
       }).catch((err) => {
         console.log("Error", err)
         setAlert({
@@ -83,6 +85,14 @@ const LoginForm = () => {
           type: "error"
         })
       })
+    }
+    else {
+      if (data.UserName == "admin"){
+        if(data.Password == "admin"){
+          navigate('/AdminDashboard')
+        }
+      }
+    }
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -120,6 +130,7 @@ const LoginForm = () => {
                 >
                   <FormControlLabel value="NGO" control={<Radio />} label="NGO" />
                   <FormControlLabel value="Contributor" control={<Radio />} label="Contributor" />
+                  <FormControlLabel value="Admin" control={<Radio />} label="Admin" />
                 </RadioGroup>
               </FormControl>
             </div>

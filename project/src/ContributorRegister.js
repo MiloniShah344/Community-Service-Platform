@@ -14,7 +14,7 @@ import FormLabel from '@mui/material/FormLabel';
 const ContributorRegister = () => {
   let navigate = useNavigate()
 
-  const [data, setData] = React.useState({UniqueId: localStorage.getItem("UniqueId"), projectsVolunteered: [], donation: {}})
+  const [data, setData] = React.useState({UniqueId: localStorage.getItem("UniqueId"), projectsVolunteered: [], donation: {}, isVerified: false})
   const [update, doupdate] = React.useState(true)
   const [alert, setAlert] = React.useState({
         value: false,

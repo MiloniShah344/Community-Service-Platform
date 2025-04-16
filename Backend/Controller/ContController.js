@@ -157,4 +157,41 @@ const updateCont = async (req,res)=>{
     }
 }
 
-module.exports = {createContributor, getContributor, getSpecificCont, updateCont}
+const updateContVerification = async (req, res) => {
+  try {
+    const { UniqueId, isVerified } = req.body;
+    const updated = await Cont.findOneAndUpdate(
+      { UniqueId },
+      { isVerified },
+      { new: true }
+    );
+    if (updated) {
+      res.send({
+        isSuccess: true,
+        message: "Contributor verification status updated",
+        cont: updated
+      });
+    } else {
+      res.send({ isSuccess: false, message: "Contributor not found" });
+    }
+  } catch (err) {
+    res.send({ isSuccess: false, message: err.message });
+  }
+};
+
+const getUnverifiedConts = async (req, res) => {
+  try {
+    const conts = await Cont.find({ isVerified: false });
+    res.send({
+      isSuccess: true,
+      contributors: conts
+    });
+  } catch (err) {
+    res.send({
+      isSuccess: false,
+      message: err.message
+    });
+  }
+};
+
+module.exports = {createContributor, getContributor, getSpecificCont, updateCont, updateContVerification, getUnverifiedConts}

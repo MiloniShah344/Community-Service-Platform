@@ -20,6 +20,7 @@ import ContProfile from './Contributor/ContProfile.js';
 import UpcomingProjects from './Contributor/UpcomingProjects.js';
 import ParticipatedProjects from './Contributor/ParticipatedProjects.js';
 import Reciepts from './Contributor/Reciepts.js';
+import AdminDashboard from './Admin/AdminDashboard.js';
 function App() {
 
   return (
@@ -41,16 +42,17 @@ function App() {
         <Route path='/current-projects' element={<NGOCurrentProjects/>}/>
         <Route path='/profile' element={<NGOProfile/>}/>
 
-        
         <Route path='/ContributorDashboard' element={<ContributorDashboard/>}/>
         <Route path='/contributor-profile' element={<ContProfile/>}/>
         <Route path='/upcoming-project' element={<UpcomingProjects/>}/>
         <Route path='/participated-projects' element={<ParticipatedProjects/>}/>
         <Route path='/reciepts' element={<Reciepts/>}/>
-
         
         <Route path='/NGORegister' element={<NGORegister/>}/>
         <Route path='/ContributorRegister' element={<ContributorRegister/>}/>
+
+        <Route path='/AdminDashboard' element={<AdminDashboard/>}/>
+
       </Routes>
     </Router>
     </div>

@@ -20,6 +20,11 @@ let UserSchema =  mongoose.Schema({
     },
     UniqueId: {
         type: Number
+    },
+    isVerified: {        
+        type: Boolean,
+        required: true,
+        default: false
     }
 })
 
@@ -39,7 +44,8 @@ const validateUser = (User)=> {
         .required(),
         Role: joi.string()
         .required(),
-        UniqueId: joi.required()
+        UniqueId: joi.required(),
+        isVerified: joi.boolean().required()
     })
     return joiSchema.validate(User)
 }

@@ -14,7 +14,7 @@ import FormLabel from '@mui/material/FormLabel';
 const NGORegister = () => {
   let navigate = useNavigate()
 
-  const [data, setData] = React.useState({UniqueId: localStorage.getItem("UniqueId")})
+  const [data, setData] = React.useState({UniqueId: localStorage.getItem("UniqueId"), isVerified: false})
     const [update, doupdate] = React.useState(true)
     const [alert, setAlert] = React.useState({
           value: false,

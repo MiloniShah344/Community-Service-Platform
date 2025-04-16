@@ -118,4 +118,41 @@ const updateNGO = (req,res)=>{
     }
 }
 
-module.exports = {createNGO, getNGO, getSpecificNGO, updateNGO}
+const updateNGOVerification = async (req, res) => {
+  try {
+    const { UniqueId, isVerified } = req.body;
+    const updated = await NGO.findOneAndUpdate(
+      { UniqueId },
+      { isVerified },
+      { new: true }
+    );
+    if (updated) {
+      res.send({
+        isSuccess: true,
+        message: "NGO verification status updated",
+        ngo: updated
+      });
+    } else {
+      res.send({ isSuccess: false, message: "NGO not found" });
+    }
+  } catch (err) {
+    res.send({ isSuccess: false, message: err.message });
+  }
+};
+
+const getUnverifiedNGOs = async (req, res) => {
+  try {
+    const ngos = await NGO.find({ isVerified: false });
+    res.send({
+      isSuccess: true,
+      ngos: ngos
+    });
+  } catch (err) {
+    res.send({
+      isSuccess: false,
+      message: err.message
+    });
+  }
+};
+
+module.exports = {createNGO, getNGO, getSpecificNGO, updateNGO, updateNGOVerification, getUnverifiedNGOs}
