@@ -20,21 +20,27 @@ const AdminDashboard = () => {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:4000/getAllContributor")
+    axios.get("http://localhost:4000/getContributor")
       .then(res => {
-        const unverified = res.data.data.filter(user => !user.isVerified);
+        const unverified = res.data.data.filter(user => user.isVerified == false);
         setContributors(unverified);
+        console.log("res.data.data cont",res.data.data)
+        console.log("contributors",contributors)
+        console.log("unverified cont",unverified)
       });
 
-    axios.get("http://localhost:4000/getAllNGO")
+    axios.get("http://localhost:4000/getNGO")
       .then(res => {
         const unverified = res.data.data.filter(user => !user.isVerified);
         setNgos(unverified);
+        console.log("res.data.data ngos",res.data.data)
+        console.log("ngos",ngos)
+        console.log("unverified ngo",unverified)
       });
   }, [reload]);
 
   const handleVerify = (role, uniqueId) => {
-    const api = role === "Contributor"
+    const api = (role === "Contributor")
       ? `http://localhost:4000/verifyCont`
       : `http://localhost:4000/verifyNGO`;
 
@@ -80,18 +86,18 @@ const AdminDashboard = () => {
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Username</th>
               <th>Unique ID</th>
+              <th>Name</th>
+              <th>City</th>
               <th>Verify</th>
             </tr>
           </thead>
           <tbody>
             {contributors.map((user) => (
               <tr key={user.UniqueId}>
-                <td>{user.FullName}</td>
-                <td>{user.UserName}</td>
                 <td>{user.UniqueId}</td>
+                <td>{user.name}</td>
+                <td>{user.city}</td>
                 <td>
                   <Button
                     variant="contained"
@@ -117,18 +123,18 @@ const AdminDashboard = () => {
         <table>
           <thead>
             <tr>
-              <th>Organization</th>
-              <th>Username</th>
               <th>Unique ID</th>
+              <th>Organization</th>
+              <th>City</th>
               <th>Verify</th>
             </tr>
           </thead>
           <tbody>
             {ngos.map((ngo) => (
               <tr key={ngo.UniqueId}>
-                <td>{ngo.OrganizationName}</td>
-                <td>{ngo.UserName}</td>
                 <td>{ngo.UniqueId}</td>
+                <td>{ngo.NGOName}</td>
+                <td>{ngo.City}</td>
                 <td>
                   <Button
                     variant="contained"
